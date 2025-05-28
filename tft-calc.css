@@ -182,6 +182,22 @@ input[type="number"]:focus, input[type="text"]:focus {
   letter-spacing: 0.5px;
 }
 
+.description-section {
+  max-width: 800px;
+  margin: 32px auto 0 auto;
+  padding: 0 24px;
+  color: #b3b9c9;
+  font-size: 1.05em;
+  line-height: 1.6;
+  text-align: center;
+}
+.description-section p {
+  margin-bottom: 16px;
+}
+.description-section strong {
+  color: #92cbe4;
+}
+
 .selected-unit-display {
   display: flex;
   align-items: center;

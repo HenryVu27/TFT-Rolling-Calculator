@@ -460,7 +460,7 @@ const debouncedUpdateChart = debounce(updateChart, 250);
 });
 
 // Initial chart
-updateChart();
+updateChart(); 
 
 let levelDropdownOpen = false;
 let unitDropdownOpen = false;

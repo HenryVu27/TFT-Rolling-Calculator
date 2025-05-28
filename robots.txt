@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://henryvu27.github.io/TFT-Rolling-Calculator/sitemap.xml 
