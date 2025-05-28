@@ -1,6 +1,7 @@
 # TFT Rolling Calculator
 
 A web tool to calculate your odds of rolling any unit in Teamfight Tactics (TFT)
+**Updated for Set 14**
 
 ## Features
 - Find the chance of hitting your desired unit after any number of rolls given your current level and gold, using up-to-date shop odds and pool sizes.
