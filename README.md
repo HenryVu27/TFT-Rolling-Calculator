@@ -54,25 +54,36 @@ To determine the minimum gold required for a desired probability (e.g., 80% for 
 #### Shop Independence
 - **Shop slots are treated as independent draws with replacement.**
 - This means the probability of seeing your unit in one shop slot does not affect the probability in another slot within the same roll.
-- In real TFT, shop draws are technically without replacement, but the difference is negligible for practical purposes and is a common simplification in TFT calculators.
+- In real TFT, shop draws are technically without replacement, but the difference is negligible for practical purposes.
+
+#### How to Compute p (Probability of Seeing Your Unit in a Shop Slot)
+- Let:
+  - C = your unit's cost
+  - L = your current level
+  - S = shop odds for cost C at level L (as a decimal, e.g. 0.35 for 35%)
+  - U = number of copies of your unit left in the pool
+  - T = total number of all units of cost C left in the pool
+- Then:
+  - p = S * (U / T)
 
 #### Equations
-Let:
-- \( p \): Probability of seeing your unit in a single shop slot (depends on level, cost, and pool state)
-- \( S \): State vector, where \( S_k \) is the probability of having exactly \( k \) copies of your unit
-- \( T \): Transition matrix, where \( T_{i,j} \) is the probability of going from \( i \) to \( j \) copies in one shop slot
+- Let S = state vector, where S[k] is the probability of having exactly k copies of your unit.
+- Let T = transition matrix, where T[i][j] is the probability of going from i to j copies in one shop slot.
+
+**Probability of seeing your unit in a shop slot:**
+
+![Equation 1: Probability p](equations/eq1.png)
 
 **Transition for one roll (5 slots):**
-\[
-S' = S \cdot T^5
-\]
 
-**Cumulative probability of getting at least \( n \) copies after all rolls:**
-\[
-P(\geq n) = \sum_{k=n}^{K} S_k
-\]
-where \( K \) is the max number of copies possible (usually 9 for 3-star).
+![Equation 2: State transition](equations/eq2.png)
+
+**Cumulative probability of getting at least n copies (using complement rule):**
+
+![Equation 3: Cumulative probability](equations/eq3.png)
 
 **Gold Requirement:**
-- For each gold value \( g \), compute \( P(\geq n) \) as above.
-- The minimum \( g \) such that \( P(\geq n) \geq 0.8 \) (or your chosen threshold) is the answer.
+
+![Equation 4: Gold requirement](equations/eq4.png)
+
+*Note: LaTeX equation images will be added to the `/equations/` directory.*
