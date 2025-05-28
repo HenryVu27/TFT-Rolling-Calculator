@@ -97,7 +97,7 @@ function getIconUrl(name) {
   return `https://ap.tft.tools/img/cd14/face/TFT14_${urlName}.jpg`;
 }
 
-// --- Custom Level Dropdown with Search ---
+// Level drop down with search   
 const levelSearch = document.getElementById('level-search');
 const levelDropdown = document.getElementById('level-dropdown');
 const unitInputs = document.getElementById('unit-inputs');
@@ -133,7 +133,9 @@ levelSearch.addEventListener('input', function() {
   renderLevelDropdown(this.value);
 });
 levelSearch.addEventListener('focus', function() {
-  renderLevelDropdown(this.value);
+  // Select all text and show full list
+  this.select();
+  renderLevelDropdown("");
 });
 levelSearch.addEventListener('keydown', function(e) {
   if (e.key === 'Enter') {
@@ -149,7 +151,16 @@ levelSearch.addEventListener('keydown', function(e) {
   }
 });
 
-// --- Custom Unit Dropdown with Search ---
+levelSearch.addEventListener('mousedown', function(e) {
+  // Prevent default focus so we can toggle
+  if (levelDropdownOpen) {
+    e.preventDefault();
+    closeLevelDropdown();
+    this.blur();
+  }
+});
+
+// Unit drop down with search   
 const unitSearch = document.getElementById('unit-search');
 const unitDropdown = document.getElementById('unit-dropdown');
 const costLabel = document.getElementById('cost-label');
@@ -189,7 +200,9 @@ unitSearch.addEventListener('input', function() {
   renderUnitDropdown(this.value);
 });
 unitSearch.addEventListener('focus', function() {
-  renderUnitDropdown(this.value);
+  // Select all text and show full list
+  this.select();
+  renderUnitDropdown("");
 });
 unitSearch.addEventListener('keydown', function(e) {
   if (e.key === 'Enter') {
@@ -203,6 +216,14 @@ unitSearch.addEventListener('keydown', function(e) {
       updateUnitInputsDisplay();
       updateChart();
     }
+  }
+});
+
+unitSearch.addEventListener('mousedown', function(e) {
+  if (unitDropdownOpen) {
+    e.preventDefault();
+    closeUnitDropdown();
+    this.blur();
   }
 });
 
@@ -226,10 +247,10 @@ updateUnitInputsDisplay();
 // --- Dropdown collapse on outside click ---
 document.addEventListener('click', function(e) {
   if (!unitDropdown.contains(e.target) && e.target !== unitSearch) {
-    unitDropdown.innerHTML = "";
+    closeUnitDropdown();
   }
   if (!levelDropdown.contains(e.target) && e.target !== levelSearch) {
-    levelDropdown.innerHTML = "";
+    closeLevelDropdown();
   }
 });
 
@@ -275,7 +296,7 @@ const chart = new Chart(ctx, {
   }
 });
 
-// Markov Chain Calculation 
+// Markov Chain calc
 function getCostProb(level, cost) {
   const odds = tftData.odds.find(o => o.level === Number(level));
   if (!odds) return 0;
@@ -354,11 +375,12 @@ function getProbs(cost, level, a, b, gold) {
   return [pprob, cprob];
 }
 
-// UI Update Logic 
+// UI update logic 
 function updateChart() {
   if (!selectedUnit || !selectedLevel) {
     chart.data.datasets[0].data = [0,0,0,0,0,0,0,0,0];
     chart.update();
+    document.getElementById('gold-2star-info').textContent = '';
     return;
   }
   const level = Number(selectedLevel);
@@ -369,11 +391,86 @@ function updateChart() {
   const cprob = getProbs(cost, level, a, b, gold)[1].slice(1, 10);
   chart.data.datasets[0].data = cprob;
   chart.update();
+
+  // Compute minimum gold for >=3 copies with >=80% probability (2-star)
+  let minGold2 = null;
+  for (let g = 0; g <= 200; g += 1) {
+    const prob = getProbs(cost, level, a, b, g)[1][3];
+    if (prob >= 0.8) {
+      minGold2 = g;
+      break;
+    }
+  }
+  // Compute minimum gold for >=9 copies with >=80% probability (3-star)
+  let minGold3 = null;
+  for (let g = 0; g <= 200; g += 1) {
+    const prob = getProbs(cost, level, a, b, g)[1][9];
+    if (prob >= 0.8) {
+      minGold3 = g;
+      break;
+    }
+  }
+  const infoDiv = document.getElementById('gold-2star-info');
+  let infoText = '';
+  if (minGold2 !== null) {
+    infoText += `<span>Gold required for 80% chance of 2-star (3+ copies): ${minGold2}</span>`;
+  } else {
+    infoText += `<span>Gold required for 80% chance of 2-star (3+ copies): \u2265200</span>`;
+  }
+  if (minGold3 !== null) {
+    infoText += `<span>Gold required for 80% chance of 3-star (9+ copies): ${minGold3}</span>`;
+  } else {
+    infoText += `<span>Gold required for 80% chance of 3-star (9+ copies): \u2265200</span>`;
+  }
+  infoDiv.innerHTML = infoText;
 }
 
 ['copies-out', 'pool-out', 'gold'].forEach(id => {
-  document.getElementById(id).addEventListener('input', updateChart);
+  const el = document.getElementById(id);
+  el.addEventListener('focus', function() {
+    this.select();
+  });
+  el.addEventListener('input', updateChart);
 });
 
 // Initial chart
-updateChart(); 
+updateChart();
+
+let levelDropdownOpen = false;
+let unitDropdownOpen = false;
+
+function openLevelDropdown() {
+  renderLevelDropdown("");
+  levelSearch.classList.add('open');
+  levelDropdownOpen = true;
+}
+function closeLevelDropdown() {
+  levelDropdown.innerHTML = "";
+  levelSearch.classList.remove('open');
+  levelDropdownOpen = false;
+}
+function openUnitDropdown() {
+  renderUnitDropdown("");
+  unitSearch.classList.add('open');
+  unitDropdownOpen = true;
+}
+function closeUnitDropdown() {
+  unitDropdown.innerHTML = "";
+  unitSearch.classList.remove('open');
+  unitDropdownOpen = false;
+}
+
+levelSearch.addEventListener('focus', function() {
+  this.select();
+  openLevelDropdown();
+});
+levelSearch.addEventListener('blur', function() {
+  setTimeout(closeLevelDropdown, 150);
+});
+unitSearch.addEventListener('focus', function() {
+  this.select();
+  openUnitDropdown();
+});
+unitSearch.addEventListener('blur', function() {
+  setTimeout(closeUnitDropdown, 150);
+}); 

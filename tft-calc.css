@@ -136,6 +136,10 @@ input[type="number"]:focus, input[type="text"]:focus {
   background: #181c24 url('data:image/svg+xml;utf8,<svg fill="%237ec7e6" height="18" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 10px center/18px 18px;
 }
 
+.unit-search-wrapper input[type="text"].open, .level-search-wrapper input[type="text"].open {
+  background: #181c24 url('data:image/svg+xml;utf8,<svg fill="%237ec7e6" height="18" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M7 14l5-5 5 5z"/></svg>') no-repeat right 10px center/18px 18px;
+}
+
 .unit-dropdown, .level-dropdown {
   background: #23273a;
   border: 1.5px solid #2e3347;
@@ -230,6 +234,56 @@ canvas#prob-chart {
   box-shadow: 0 1px 4px rgba(0,0,0,0.10);
 }
 
+.dropdown-arrow {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 20;
+  pointer-events: auto;
+}
+.dropdown-arrow::before {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  border-top: 8px solid #7ec7e6;
+  transition: transform 0.2s;
+}
+.dropdown-arrow.up::before {
+  border-top: none;
+  border-bottom: 8px solid #7ec7e6;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+}
+
+.gold-2star-info {
+  margin-top: 24px;
+  color: #e6eaf3;
+  font-size: 1.1em;
+  min-width: 0;
+  max-width: 700px;
+  box-shadow: none;
+  text-align: left;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0 0 0 0;
+  line-height: 1.7;
+}
+.gold-2star-info span {
+  display: block;
+  margin-bottom: 8px;
+}
+
 @media (max-width: 1200px) {
   .main-flex {
     flex-direction: column;
@@ -243,5 +297,11 @@ canvas#prob-chart {
   .chart-section {
     margin: 24px 0 24px 0;
     max-width: 98vw;
+    width: 100%;
+  }
+  .gold-2star-info {
+    max-width: 98vw;
+    width: 100%;
+    margin-top: 16px;
   }
 } 
