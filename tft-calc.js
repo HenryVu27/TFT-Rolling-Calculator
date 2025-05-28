@@ -1,3 +1,10 @@
+// Google Analytics helper function
+function trackEvent(eventName, parameters = {}) {
+  if (typeof gtag !== 'undefined') {
+    gtag('event', eventName, parameters);
+  }
+}
+
 // TFT Data (from tft_data.json) 
 const tftData = {
   costs: [
@@ -117,6 +124,13 @@ function renderLevelDropdown(filter = "") {
       selectedLevel = lvl;
       levelSearch.value = lvl;
       levelDropdown.innerHTML = "";
+      
+      // Track level selection
+      trackEvent('level_selected', {
+        level: lvl,
+        event_category: 'calculator_interaction'
+      });
+      
       updateChart();
     };
     levelDropdown.appendChild(div);
@@ -146,6 +160,14 @@ levelSearch.addEventListener('keydown', function(e) {
       selectedLevel = filtered[0];
       levelSearch.value = selectedLevel;
       levelDropdown.innerHTML = "";
+      
+      // Track level selection via keyboard
+      trackEvent('level_selected', {
+        level: selectedLevel,
+        input_method: 'keyboard',
+        event_category: 'calculator_interaction'
+      });
+      
       updateChart();
     }
   }
@@ -183,6 +205,14 @@ function renderUnitDropdown(filter = "") {
       selectedUnit = unit;
       unitSearch.value = unit.name;
       unitDropdown.innerHTML = "";
+      
+      // Track unit selection
+      trackEvent('unit_selected', {
+        unit_name: unit.name,
+        unit_cost: unit.cost,
+        event_category: 'calculator_interaction'
+      });
+      
       updateUnitInputsDisplay();
       updateChart();
     };
@@ -213,6 +243,15 @@ unitSearch.addEventListener('keydown', function(e) {
       selectedUnit = filtered[0];
       unitSearch.value = selectedUnit.name;
       unitDropdown.innerHTML = "";
+      
+      // Track unit selection via keyboard
+      trackEvent('unit_selected', {
+        unit_name: selectedUnit.name,
+        unit_cost: selectedUnit.cost,
+        input_method: 'keyboard',
+        event_category: 'calculator_interaction'
+      });
+      
       updateUnitInputsDisplay();
       updateChart();
     }
