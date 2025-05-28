@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TFT Rolling Calculator | Teamfight Tactics Shop Odds & Probability Tool</title>
+  <meta name="description" content="Calculate your odds of rolling any unit in TFT! Use this Teamfight Tactics rolling calculator to find the probability of hitting your desired champion, with up-to-date shop odds, pool sizes, and more.">
+  <meta name="keywords" content="TFT, Teamfight Tactics, rolling calculator, shop odds, probability, unit odds, TFT calculator, TFT probability, TFT shop odds, TFT roll odds, TFT tool, TFT guide, TFT probability calculator, TFT unit odds">
+  <meta property="og:title" content="TFT Rolling Calculator | Teamfight Tactics Shop Odds & Probability Tool">
+  <meta property="og:description" content="Calculate your odds of rolling any unit in TFT! Use this Teamfight Tactics rolling calculator to find the probability of hitting your desired champion, with up-to-date shop odds, pool sizes, and more.">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="tft-calc.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h1 class="main-title">TFT Rolling Probability Calculator</h1>
+  <div class="main-flex">
+    <aside class="sidebar">
+      <form id="prob-form">
+        <div class="input-section">
+          <label for="level-search">Current Level</label>
+          <div class="level-search-wrapper">
+            <input type="text" id="level-search" placeholder="Your level" autocomplete="off">
+          </div>
+          <div id="level-dropdown" class="level-dropdown"></div>
+        </div>
+        <hr>
+        <div class="input-section">
+          <label for="unit-search">Select Unit</label>
+          <div class="unit-search-wrapper">
+            <input type="text" id="unit-search" placeholder="Type to search..." autocomplete="off">
+          </div>
+          <div id="unit-dropdown" class="unit-dropdown"></div>
+        </div>
+        <hr>
+        <div id="unit-inputs" style="display:none">
+          <div id="selected-unit-display" class="selected-unit-display"></div>
+          <div class="input-section">
+            <label for="copies-out">Number of copies of <span id="unit-name-label"></span> out of pool</label>
+            <input type="number" id="copies-out" min="0" value="0">
+          </div>
+          <hr>
+          <div class="input-section">
+            <label for="pool-out">Number of copies of <span id="cost-label"></span>-costs out of pool</label>
+            <input type="number" id="pool-out" min="0" value="0">
+          </div>
+          <hr>
+          <div class="input-section">
+            <label for="gold">Amount of gold</label>
+            <input type="number" id="gold" min="0" step="1" value="50">
+          </div>
+        </div>
+      </form>
+    </aside>
+    <section class="chart-section">
+      <h2>Probability of Getting At Least X Copies</h2>
+      <canvas id="prob-chart" width="600" height="300"></canvas>
+    </section>
+  </div>
+  <script src="tft-calc.js"></script>
+</body>
+</html> 
