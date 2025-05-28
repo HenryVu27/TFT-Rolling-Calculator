@@ -379,6 +379,31 @@ function getProbs(cost, level, a, b, gold) {
   return [pprob, cprob];
 }
 
+// Binary search helper for gold requirement
+function findMinGoldForProbability(cost, level, a, b, targetCopies, threshold, maxGold = 200) {
+  // Smart starting bounds based on cost
+  let low = Math.max(0, (cost - 1) * 20);
+  let high = maxGold;
+  let result = null;
+  
+  while (low <= high) {
+    // Step by 2 since each roll costs 2 gold
+    const mid = low + Math.floor((high - low) / 2);
+    const gold = mid % 2 === 0 ? mid : mid + 1; // Ensure even gold values
+    
+    const prob = getProbs(cost, level, a, b, gold)[1][targetCopies];
+    
+    if (prob >= threshold) {
+      result = gold;
+      high = mid - 2; // Search lower half
+    } else {
+      low = mid + 2; // Search upper half
+    }
+  }
+  
+  return result;
+}
+
 // UI update logic 
 function updateChart() {
   if (!selectedUnit || !selectedLevel) {
@@ -396,24 +421,10 @@ function updateChart() {
   chart.data.datasets[0].data = cprob;
   chart.update();
 
-  // Compute minimum gold for >=3 copies with >=80% probability (2-star)
-  let minGold2 = null;
-  for (let g = 0; g <= 200; g += 1) {
-    const prob = getProbs(cost, level, a, b, g)[1][3];
-    if (prob >= 0.8) {
-      minGold2 = g;
-      break;
-    }
-  }
-  // Compute minimum gold for >=9 copies with >=80% probability (3-star)
-  let minGold3 = null;
-  for (let g = 0; g <= 200; g += 1) {
-    const prob = getProbs(cost, level, a, b, g)[1][9];
-    if (prob >= 0.8) {
-      minGold3 = g;
-      break;
-    }
-  }
+  // Use binary search for gold requirements
+  const minGold2 = findMinGoldForProbability(cost, level, a, b, 3, 0.8);
+  const minGold3 = findMinGoldForProbability(cost, level, a, b, 9, 0.8);
+  
   const infoDiv = document.getElementById('gold-2star-info');
   let infoText = '';
   if (minGold2 !== null) {

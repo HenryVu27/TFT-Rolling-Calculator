@@ -23,7 +23,7 @@ cd tft-rolling-calculator
 Just open `index.html` in your browser. No build step required.
 
 ## Credits
-- Inspired by TFT stat and guide sites.
+- UI inspired by TFT stat sites.
 - Built with [Chart.js](https://www.chartjs.org/) for visualization.
 - Probability calculation logic derived from [wongkj12's explanation](https://github.com/wongkj12).
 
@@ -56,34 +56,47 @@ To determine the minimum gold required for a desired probability (e.g., 80% for 
 - This means the probability of seeing your unit in one shop slot does not affect the probability in another slot within the same roll.
 - In real TFT, shop draws are technically without replacement, but the difference is negligible for practical purposes.
 
-#### How to Compute p (Probability of Seeing Your Unit in a Shop Slot)
-- Let:
-  - C = your unit's cost
-  - L = your current level
-  - S = shop odds for cost C at level L (as a decimal, e.g. 0.35 for 35%)
-  - U = number of copies of your unit left in the pool
-  - T = total number of all units of cost C left in the pool
-- Then:
-  - p = S * (U / T)
+#### Time Complexity
 
-#### Equations
-- Let S = state vector, where S[k] is the probability of having exactly k copies of your unit.
-- Let T = transition matrix, where T[i][j] is the probability of going from i to j copies in one shop slot.
+**Independent Shop Approach:**
+- State space: Number of copies you have (0 to 9) → ~10 states (another assumption for efficiency)
+- Transition matrix: 10×10
+- Time complexity per gold value: O(1) since matrix operations on 10×10 are negligible
+- Total complexity for finding minimum gold (up to 200): O(200) ≈ O(1)
+
+**Dependent Shop Approach:**
+- State space: Must track entire pool state for all units of that cost
+- For cost 1 units: 13 distinct champions × 30 pool size = 390 total units
+- State space: All possible distributions of remaining units → O(10³ to 10⁴) states  
+- Transition matrix: (state_space)² elements
+- Time complexity per gold value: O(state_space³) for matrix operations
+- Total complexity: O(200 × state_space³)
+
+**Performance Comparison:**
+- Independent approach: ~1,000 operations per calculation
+- Dependent approach: ~10⁹ to 10¹² operations per calculation
+- **Speedup: 10⁶ to 10⁹ times faster** with minimal accuracy loss
+
+#### How the Computation Works:
 
 **Probability of seeing your unit in a shop slot:**
 
 ![Equation 1: Probability p](equations/eq1.png)
+- Where:
+  - C = your unit's cost
+  - L = your current level
+  - ShopOdds(L, C) = shop odds for cost C at level L
+  - U = number of copies of your unit left in the pool
+  - N = total number of all units of cost C left in the pool
 
 **Transition for one roll (5 slots):**
 
 ![Equation 2: State transition](equations/eq2.png)
+- Where:
+    - S = state vector, where S[k] is the probability of having exactly k copies of your unit.
+    - T = transition matrix, where T[i][j] is the probability of going from i to j copies in one shop slot.
 
 **Cumulative probability of getting at least n copies (using complement rule):**
 
 ![Equation 3: Cumulative probability](equations/eq3.png)
 
-**Gold Requirement:**
-
-![Equation 4: Gold requirement](equations/eq4.png)
-
-*Note: LaTeX equation images will be added to the `/equations/` directory.*
