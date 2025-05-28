@@ -292,6 +292,10 @@ const chart = new Chart(ctx, {
         },
         bodyFont: { size: 16 }
       }
+    },
+    animation: {
+      duration: 700,
+      easing: 'easeOutQuart'
     }
   }
 });
@@ -425,12 +429,23 @@ function updateChart() {
   infoDiv.innerHTML = infoText;
 }
 
+// Debounce utility
+function debounce(fn, delay) {
+  let timeout;
+  return function(...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => fn.apply(this, args), delay);
+  };
+}
+
+const debouncedUpdateChart = debounce(updateChart, 250);
+
 ['copies-out', 'pool-out', 'gold'].forEach(id => {
   const el = document.getElementById(id);
   el.addEventListener('focus', function() {
     this.select();
   });
-  el.addEventListener('input', updateChart);
+  el.addEventListener('input', debouncedUpdateChart);
 });
 
 // Initial chart
