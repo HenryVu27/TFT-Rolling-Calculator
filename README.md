@@ -18,7 +18,7 @@ cd tft-rolling-calculator
 ```
 
 ### 2. Open the App
-Just open `tft-calc.html` in your browser. No build step required.
+Just open `index.html` in your browser. No build step required.
 
 ## Credits
 - Inspired by TFT stat and guide sites.
