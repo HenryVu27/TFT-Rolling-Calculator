@@ -1,16 +1,16 @@
 {
   "title": "Calculateur de Probabilité de Roll TFT",
-  "disclaimer": "Ce calculateur n'est pas affilié à Riot Games et est fourni à titre informatif uniquement. Les cotes et probabilités sont basées sur les cotes actuelles de la boutique et les tailles de pool, et sont sujettes à changement.",
+  "disclaimer": "Rappel amical : Ce sont des estimations ! Comme le pool change constamment lorsque les joueurs achètent et vendent, les chances réelles en jeu peuvent légèrement différer, mais ces chiffres sont conçus pour être raisonnablement proches.",
   "currentLevel": "Niveau Actuel",
   "levelPlaceholder": "Votre niveau",
   "selectUnit": "Sélectionner une Unité",
-  "unitPlaceholder": "Tapez pour rechercher...",
+  "unitPlaceholder": "Rechercher...",
   "copiesOut": "Nombre de copies de {unitName} hors du pool",
-  "poolOut": "Nombre de copies de coût {cost} hors du pool",
-  "amountOfGold": "Quantité d'or",
-  "probabilityChart": "Probabilité d'Obtenir Au Moins X Copies",
+  "poolOut": "Nombre d'unités de coût {cost} hors du pool",
+  "amountOfGold": "Montant d'or pour roll",
+  "probabilityChart": "Probabilité d'Obtenir au Moins X Copies",
   "noResults": "Aucun résultat",
-  "goldFor2Star": "Or requis pour 80% de chance de 2 étoiles (3+ copies): {gold}",
-  "goldFor3Star": "Or requis pour 80% de chance de 3 étoiles (9+ copies): {gold}",
+  "goldFor2Star": "Or requis pour 80% de chances d'obtenir une unité 2 étoiles (3+ copies) : {gold}",
+  "goldFor3Star": "Or requis pour 80% de chances d'obtenir une unité 3 étoiles (9+ copies) : {gold}",
   "language": "Langue"
-} 
+}

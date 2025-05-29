@@ -243,15 +243,14 @@ function updateUnitInputsDisplay() {
   // Update dynamic labels with translation if available
   if (typeof i18n !== 'undefined' && i18n.translations) {
     i18n.updateDynamicLabels(selectedUnit);
-    // Also update the chart to ensure gold requirements use current language
     updateChart();
   }
 }
 
-// Set default selected unit and level to none
+// Set default selected unit and level
 updateUnitInputsDisplay();
 
-// --- Dropdown collapse on outside click ---
+// Dropdown collapse on outside click
 document.addEventListener('click', function(e) {
   if (!unitDropdown.contains(e.target) && e.target !== unitSearch) {
     closeUnitDropdown();
@@ -261,7 +260,7 @@ document.addEventListener('click', function(e) {
   }
 });
 
-// Chart.js setup 
+// Chart.js stuff 
 const ctx = document.getElementById('prob-chart').getContext('2d');
 const chart = new Chart(ctx, {
   type: 'bar',
@@ -402,9 +401,9 @@ function findMinGoldForProbability(cost, level, a, b, targetCopies, threshold, m
     
     if (prob >= threshold) {
       result = gold;
-      high = mid - 2; // Search lower half
+      high = mid - 2;
     } else {
-      low = mid + 2; // Search upper half
+      low = mid + 2;
     }
   }
   
