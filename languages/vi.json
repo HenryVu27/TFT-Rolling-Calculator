@@ -10,7 +10,9 @@
   "amountOfGold": "Lượng vàng để roll",
   "probabilityChart": "Xác suất Nhận Được Ít Nhất X Tướng",
   "noResults": "Không có kết quả",
-  "goldFor2Star": "Vàng cần thiết để có 80% tỷ lệ lên 2 sao (3+ tướng): {gold}",
-  "goldFor3Star": "Vàng cần thiết để có 80% tỷ lệ lên 3 sao (9+ tướng): {gold}",
-  "language": "Ngôn ngữ"
+  "goldFor2Star": "Vàng cần thiết cho 80% cơ hội có 2-sao (3+ bản): {gold}",
+  "goldFor3Star": "Vàng cần thiết cho 80% cơ hội có 3-sao (9+ bản): {gold}",
+  "language": "Ngôn ngữ",
+  "metaDescription": "Tính toán cơ hội roll bất kỳ tướng nào trong TFT! Sử dụng máy tính xác suất Teamfight Tactics này để tìm khả năng có được tướng mong muốn, với tỷ lệ cửa hàng cập nhật, kích thước pool và nhiều hơn nữa.",
+  "metaKeywords": "TFT, Teamfight Tactics, máy tính roll, tỷ lệ cửa hàng, xác suất, tỷ lệ tướng, máy tính TFT, xác suất TFT, tỷ lệ cửa hàng TFT, tỷ lệ roll TFT, công cụ TFT, hướng dẫn TFT, máy tính xác suất TFT, tỷ lệ tướng TFT"
 }

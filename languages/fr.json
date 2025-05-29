@@ -10,7 +10,9 @@
   "amountOfGold": "Montant d'or pour roll",
   "probabilityChart": "Probabilité d'Obtenir au Moins X Copies",
   "noResults": "Aucun résultat",
-  "goldFor2Star": "Or requis pour 80% de chances d'obtenir une unité 2 étoiles (3+ copies) : {gold}",
-  "goldFor3Star": "Or requis pour 80% de chances d'obtenir une unité 3 étoiles (9+ copies) : {gold}",
-  "language": "Langue"
+  "goldFor2Star": "Or requis pour 80% de chance d'obtenir 2-étoiles (3+ copies): {gold}",
+  "goldFor3Star": "Or requis pour 80% de chance d'obtenir 3-étoiles (9+ copies): {gold}",
+  "language": "Langue",
+  "metaDescription": "Calculez vos chances d'obtenir n'importe quelle unité dans TFT ! Utilisez ce calculateur de probabilités Teamfight Tactics pour trouver la probabilité d'obtenir le champion désiré, avec les cotes de magasin à jour, les tailles de pool, et plus.",
+  "metaKeywords": "TFT, Teamfight Tactics, calculateur de rolls, cotes magasin, probabilité, cotes unités, calculateur TFT, probabilité TFT, cotes magasin TFT, cotes roll TFT, outil TFT, guide TFT, calculateur probabilité TFT, cotes unités TFT"
 }

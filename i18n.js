@@ -9,7 +9,19 @@ class I18n {
       'ja': { name: '日本語', flag: 'JP', file: 'languages/ja.json' },
       'ko': { name: '한국어', flag: 'KR', file: 'languages/ko.json' }
     };
-    this.currentLanguage = localStorage.getItem('tft-calc-language') || 'en';
+    
+    // Check for URL parameter first, then localStorage, then default to English
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlLang = urlParams.get('lang');
+    let initialLang = 'en';
+    
+    if (urlLang && this.languages[urlLang]) {
+      initialLang = urlLang;
+    } else {
+      initialLang = localStorage.getItem('tft-calc-language') || 'en';
+    }
+    
+    this.currentLanguage = initialLang;
     this.translations = {};
     this.loadLanguage(this.currentLanguage);
   }
@@ -47,6 +59,9 @@ class I18n {
   updateUI() {
     // page title
     document.title = this.t('title') + ' | Teamfight Tactics Shop Odds & Probability Tool';
+    
+    // Update SEO meta tags
+    this.updateSEOMetadata();
     
     // main title
     const mainTitle = document.querySelector('.main-title');
@@ -105,6 +120,98 @@ class I18n {
     if (typeof updateChart === 'function') {
       updateChart();
     }
+  }
+
+  updateSEOMetadata() {
+    // Update html lang attribute
+    document.documentElement.lang = this.currentLanguage;
+    
+    // Update meta description
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.content = this.t('metaDescription');
+    }
+    
+    // Update meta keywords
+    const metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (metaKeywords) {
+      metaKeywords.content = this.t('metaKeywords');
+    }
+    
+    // Update Open Graph tags
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) {
+      ogTitle.content = this.t('title') + ' | Teamfight Tactics Shop Odds & Probability Tool';
+    }
+    
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) {
+      ogDesc.content = this.t('metaDescription');
+    }
+    
+    // Add/update hreflang tags for international SEO
+    this.updateHreflangTags();
+    
+    // Add/update JSON-LD structured data
+    this.updateStructuredData();
+  }
+
+  updateHreflangTags() {
+    // Remove existing hreflang tags
+    const existingHreflang = document.querySelectorAll('link[rel="alternate"][hreflang]');
+    existingHreflang.forEach(tag => tag.remove());
+    
+    // Add hreflang tags for each language
+    Object.keys(this.languages).forEach(langCode => {
+      const link = document.createElement('link');
+      link.rel = 'alternate';
+      link.hreflang = langCode;
+      link.href = `https://henryvu27.github.io/TFT-Rolling-Calculator/?lang=${langCode}`;
+      document.head.appendChild(link);
+    });
+    
+    // Add x-default for English
+    const defaultLink = document.createElement('link');
+    defaultLink.rel = 'alternate';
+    defaultLink.hreflang = 'x-default';
+    defaultLink.href = 'https://henryvu27.github.io/TFT-Rolling-Calculator/';
+    document.head.appendChild(defaultLink);
+  }
+
+  updateStructuredData() {
+    // Remove existing structured data
+    const existingLD = document.querySelector('script[type="application/ld+json"]');
+    if (existingLD) {
+      existingLD.remove();
+    }
+    
+    // Create new structured data
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": this.t('title'),
+      "description": this.t('metaDescription'),
+      "url": "https://henryvu27.github.io/TFT-Rolling-Calculator/",
+      "applicationCategory": "GameApplication",
+      "operatingSystem": "Web Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "henryvu27"
+      },
+      "inLanguage": this.currentLanguage,
+      "isAccessibleForFree": true,
+      "keywords": this.t('metaKeywords')
+    };
+    
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(structuredData);
+    document.head.appendChild(script);
   }
 
   updateDynamicLabels(unit = null) {

@@ -10,7 +10,9 @@
   "amountOfGold": "Cantidad de oro para rolear",
   "probabilityChart": "Probabilidad de Obtener Al Menos X Copias",
   "noResults": "Sin resultados",
-  "goldFor2Star": "Oro requerido para un 80% de probabilidad de 2 estrellas (3+ copias): {gold}",
-  "goldFor3Star": "Oro requerido para un 80% de probabilidad de 3 estrellas (9+ copias): {gold}",
-  "language": "Idioma"
+  "goldFor2Star": "Oro requerido para 80% probabilidad de 2-estrellas (3+ copias): {gold}",
+  "goldFor3Star": "Oro requerido para 80% probabilidad de 3-estrellas (9+ copias): {gold}",
+  "language": "Idioma",
+  "metaDescription": "¡Calcula tus probabilidades de conseguir cualquier unidad en TFT! Usa esta calculadora de probabilidades de Teamfight Tactics para encontrar la probabilidad de obtener tu campeón deseado, con probabilidades de tienda actualizadas, tamaños de pool y más.",
+  "metaKeywords": "TFT, Teamfight Tactics, calculadora de rerolls, probabilidades tienda, probabilidad, probabilidades unidades, calculadora TFT, probabilidad TFT, probabilidades tienda TFT, probabilidades roll TFT, herramienta TFT, guía TFT, calculadora probabilidad TFT, probabilidades unidades TFT"
 }

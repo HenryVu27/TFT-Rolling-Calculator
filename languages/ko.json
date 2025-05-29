@@ -10,7 +10,9 @@
   "amountOfGold": "리롤에 사용할 골드",
   "probabilityChart": "X개 이상 획득 확률",
   "noResults": "결과 없음",
-  "goldFor2Star": "2성 (3개 이상) 80% 확률 달성에 필요한 골드: {gold}",
-  "goldFor3Star": "3성 (9개 이상) 80% 확률 달성에 필요한 골드: {gold}",
-  "language": "언어"
+  "goldFor2Star": "2성 80% 확률에 필요한 골드 (3+ 개): {gold}",
+  "goldFor3Star": "3성 80% 확률에 필요한 골드 (9+ 개): {gold}",
+  "language": "언어",
+  "metaDescription": "TFT에서 원하는 유닛을 롤할 확률을 계산하세요! 이 Teamfight Tactics 확률 계산기를 사용하여 원하는 챔피언을 얻을 확률을 최신 상점 확률, 풀 크기 등으로 찾아보세요.",
+  "metaKeywords": "TFT, Teamfight Tactics, 롤 계산기, 상점 확률, 확률, 유닛 확률, TFT 계산기, TFT 확률, TFT 상점 확률, TFT 롤 확률, TFT 도구, TFT 가이드, TFT 확률 계산기, TFT 유닛 확률"
 }
