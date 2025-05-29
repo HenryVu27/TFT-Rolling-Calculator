@@ -24,16 +24,13 @@
   <link rel="stylesheet" href="tft-calc.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="i18n.js"></script>
 </head>
 <body>
   <h1 class="main-title">TFT Rolling Probability Calculator</h1>
-  <!-- <div class="description-section">
-    <p>Calculate your exact odds of hitting any Teamfight Tactics (TFT) unit with this advanced rolling probability calculator. This TFT calculator uses mathematical models to determine your chances of getting specific champions based on your level, gold, and the current pool state.</p>
-    
-    <p><strong>Features:</strong> Real-time probability calculations, 2-star and 3-star upgrade predictions, gold requirement estimates, and support for all TFT Set 14 units and shop odds.</p>
-    
-    <p><strong>How to use:</strong> Select your current level, choose the unit you want, enter how many copies are already out of the pool, and specify your gold budget. The calculator will show you the probability of hitting your desired unit and estimate the gold needed for 80% success rates.</p>
-  </div> -->
+  <div class="description-section">
+    <b>Disclaimer:</b> This calculator is not affiliated with Riot Games, and is for informational purposes only. The odds and probabilities are based on the current shop odds and pool sizes, and are subject to change.
+  </div>
   <div class="main-flex">
     <aside class="sidebar">
       <form id="prob-form">
@@ -79,5 +76,11 @@
     </section>
   </div>
   <script src="tft-calc.js"></script>
+  <script>
+    // Initialize language selector after page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      i18n.createLanguageSelector();
+    });
+  </script>
 </body>
 </html> 

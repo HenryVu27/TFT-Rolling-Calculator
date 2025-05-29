@@ -1,0 +1,16 @@
+{
+  "title": "TFT Rolling Probability Calculator",
+  "disclaimer": "This calculator is not affiliated with Riot Games, and is for informational purposes only. The odds and probabilities are based on the current shop odds and pool sizes, and are subject to change.",
+  "currentLevel": "Current Level",
+  "levelPlaceholder": "Your level",
+  "selectUnit": "Select Unit",
+  "unitPlaceholder": "Type to search...",
+  "copiesOut": "Number of copies of {unitName} out of pool",
+  "poolOut": "Number of copies of {cost}-costs out of pool",
+  "amountOfGold": "Amount of gold",
+  "probabilityChart": "Probability of Getting At Least X Copies",
+  "noResults": "No results",
+  "goldFor2Star": "Gold required for 80% chance of 2-star (3+ copies): {gold}",
+  "goldFor3Star": "Gold required for 80% chance of 3-star (9+ copies): {gold}",
+  "language": "Language"
+} 

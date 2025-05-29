@@ -1,0 +1,16 @@
+{
+  "title": "TFT 롤링 확률 계산기",
+  "disclaimer": "이 계산기는 라이엇 게임즈와 제휴하지 않으며 정보 제공 목적으로만 사용됩니다. 확률과 가능성은 현재 상점 확률과 풀 크기를 기반으로 하며 변경될 수 있습니다.",
+  "currentLevel": "현재 레벨",
+  "levelPlaceholder": "당신의 레벨",
+  "selectUnit": "유닛 선택",
+  "unitPlaceholder": "검색하려면 입력...",
+  "copiesOut": "풀 밖의 {unitName} 복사본 수",
+  "poolOut": "풀 밖의 {cost} 코스트 복사본 수",
+  "amountOfGold": "골드 양",
+  "probabilityChart": "최소 X개 복사본을 얻을 확률",
+  "noResults": "결과 없음",
+  "goldFor2Star": "2성을 80% 확률로 얻는 데 필요한 골드 (3+ 복사본): {gold}",
+  "goldFor3Star": "3성을 80% 확률로 얻는 데 필요한 골드 (9+ 복사본): {gold}",
+  "language": "언어"
+} 

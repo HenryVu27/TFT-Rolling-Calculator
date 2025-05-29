@@ -1,0 +1,16 @@
+{
+  "title": "TFT Roll-Wahrscheinlichkeits-Rechner",
+  "disclaimer": "Dieser Rechner ist nicht mit Riot Games verbunden und dient nur zu Informationszwecken. Die Quoten und Wahrscheinlichkeiten basieren auf den aktuellen Shop-Quoten und Pool-Größen und können sich ändern.",
+  "currentLevel": "Aktuelles Level",
+  "levelPlaceholder": "Ihr Level",
+  "selectUnit": "Einheit Auswählen",
+  "unitPlaceholder": "Tippen zum Suchen...",
+  "copiesOut": "Anzahl der Kopien von {unitName} außerhalb des Pools",
+  "poolOut": "Anzahl der {cost}-Kosten-Kopien außerhalb des Pools",
+  "amountOfGold": "Menge an Gold",
+  "probabilityChart": "Wahrscheinlichkeit, Mindestens X Kopien zu Erhalten",
+  "noResults": "Keine Ergebnisse",
+  "goldFor2Star": "Gold benötigt für 80% Chance auf 2-Sterne (3+ Kopien): {gold}",
+  "goldFor3Star": "Gold benötigt für 80% Chance auf 3-Sterne (9+ Kopien): {gold}",
+  "language": "Sprache"
+} 

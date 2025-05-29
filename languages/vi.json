@@ -1,0 +1,16 @@
+{
+  "title": "Máy Tính Xác Suất Roll TFT",
+  "disclaimer": "Máy tính này không liên kết với Riot Games và chỉ nhằm mục đích thông tin. Tỷ lệ và xác suất dựa trên tỷ lệ cửa hàng hiện tại và kích thước pool, có thể thay đổi.",
+  "currentLevel": "Cấp Độ Hiện Tại",
+  "levelPlaceholder": "Cấp độ của bạn",
+  "selectUnit": "Chọn Tướng",
+  "unitPlaceholder": "Gõ để tìm kiếm...",
+  "copiesOut": "Số lượng {unitName} đã ra khỏi pool",
+  "poolOut": "Số lượng tướng {cost} gold đã ra khỏi pool",
+  "amountOfGold": "Số lượng vàng",
+  "probabilityChart": "Xác Suất Nhận Ít Nhất X Tướng",
+  "noResults": "Không có kết quả",
+  "goldFor2Star": "Vàng cần cho 80% cơ hội lên 2 sao (3+ tướng): {gold}",
+  "goldFor3Star": "Vàng cần cho 80% cơ hội lên 3 sao (9+ tướng): {gold}",
+  "language": "Ngôn Ngữ"
+} 

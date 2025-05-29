@@ -1,0 +1,16 @@
+{
+  "title": "TFTロール確率計算機",
+  "disclaimer": "この計算機はRiot Gamesとは提携しておらず、情報提供のみを目的としています。確率と可能性は現在のショップの確率とプールサイズに基づいており、変更される可能性があります。",
+  "currentLevel": "現在のレベル",
+  "levelPlaceholder": "あなたのレベル",
+  "selectUnit": "ユニットを選択",
+  "unitPlaceholder": "検索するために入力...",
+  "copiesOut": "プール外の{unitName}のコピー数",
+  "poolOut": "プール外の{cost}コストのコピー数",
+  "amountOfGold": "ゴールドの量",
+  "probabilityChart": "少なくともXコピーを取得する確率",
+  "noResults": "結果がありません",
+  "goldFor2Star": "2つ星を80%の確率で取得するのに必要なゴールド (3+コピー): {gold}",
+  "goldFor3Star": "3つ星を80%の確率で取得するのに必要なゴールド (9+コピー): {gold}",
+  "language": "言語"
+} 

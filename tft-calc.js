@@ -124,7 +124,7 @@ function renderLevelDropdown(filter = "") {
   if (filtered.length === 0) {
     const div = document.createElement('div');
     div.className = 'level-option';
-    div.textContent = 'No results';
+    div.textContent = (typeof i18n !== 'undefined' && i18n.translations) ? i18n.t('noResults') : 'No results';
     levelDropdown.appendChild(div);
   }
 }
@@ -191,7 +191,7 @@ function renderUnitDropdown(filter = "") {
   if (filtered.length === 0) {
     const div = document.createElement('div');
     div.className = 'unit-option';
-    div.innerHTML = 'No results';
+    div.innerHTML = (typeof i18n !== 'undefined' && i18n.translations) ? i18n.t('noResults') : 'No results';
     unitDropdown.appendChild(div);
   }
 }
@@ -239,6 +239,13 @@ function updateUnitInputsDisplay() {
   selectedUnitDisplay.innerHTML = `<img src="${getIconUrl(selectedUnit.name)}"><span>${selectedUnit.name}</span>`;
   unitNameLabel.textContent = selectedUnit.name;
   costLabel.textContent = selectedUnit.cost;
+  
+  // Update dynamic labels with translation if available
+  if (typeof i18n !== 'undefined' && i18n.translations) {
+    i18n.updateDynamicLabels(selectedUnit);
+    // Also update the chart to ensure gold requirements use current language
+    updateChart();
+  }
 }
 
 // Set default selected unit and level to none
@@ -427,16 +434,33 @@ function updateChart() {
   
   const infoDiv = document.getElementById('gold-2star-info');
   let infoText = '';
-  if (minGold2 !== null) {
-    infoText += `<span>Gold required for 80% chance of 2-star (3+ copies): ${minGold2}</span>`;
+  
+  if (typeof i18n !== 'undefined' && i18n.translations) {
+    // Use translations
+    if (minGold2 !== null) {
+      infoText += `<span>${i18n.t('goldFor2Star', { gold: minGold2 })}</span>`;
+    } else {
+      infoText += `<span>${i18n.t('goldFor2Star', { gold: '≥200' })}</span>`;
+    }
+    if (minGold3 !== null) {
+      infoText += `<span>${i18n.t('goldFor3Star', { gold: minGold3 })}</span>`;
+    } else {
+      infoText += `<span>${i18n.t('goldFor3Star', { gold: '≥200' })}</span>`;
+    }
   } else {
-    infoText += `<span>Gold required for 80% chance of 2-star (3+ copies): \u2265200</span>`;
+    // Fallback for before i18n loads
+    if (minGold2 !== null) {
+      infoText += `<span>Gold required for 80% chance of 2-star (3+ copies): ${minGold2}</span>`;
+    } else {
+      infoText += `<span>Gold required for 80% chance of 2-star (3+ copies): ≥200</span>`;
+    }
+    if (minGold3 !== null) {
+      infoText += `<span>Gold required for 80% chance of 3-star (9+ copies): ${minGold3}</span>`;
+    } else {
+      infoText += `<span>Gold required for 80% chance of 3-star (9+ copies): ≥200</span>`;
+    }
   }
-  if (minGold3 !== null) {
-    infoText += `<span>Gold required for 80% chance of 3-star (9+ copies): ${minGold3}</span>`;
-  } else {
-    infoText += `<span>Gold required for 80% chance of 3-star (9+ copies): \u2265200</span>`;
-  }
+  
   infoDiv.innerHTML = infoText;
 }
 
