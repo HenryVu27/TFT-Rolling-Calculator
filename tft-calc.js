@@ -325,11 +325,15 @@ const chart = new Chart(ctx, {
         beginAtZero: true,
         max: 1,
         ticks: {
-          callback: function(value) { return (value*100).toFixed(0) + '%'; }
+          callback: function(value) { return (value*100).toFixed(0) + '%'; },
+          color: '#b3b9c9'
         },
         grid: { color: '#2e3347' }
       },
       x: {
+        ticks: {
+          color: '#b3b9c9'
+        },
         grid: { color: '#2e3347' }
       }
     },
