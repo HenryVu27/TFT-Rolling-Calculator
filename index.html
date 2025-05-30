@@ -24,31 +24,27 @@
   <link rel="stylesheet" href="tft-calc.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="i18n.js"></script>
 </head>
 <body>
-  <h1 class="main-title">TFT Rolling Probability Calculator</h1>
-  <!-- <div class="description-section">
-    <p>Calculate your exact odds of hitting any Teamfight Tactics (TFT) unit with this advanced rolling probability calculator. This TFT calculator uses mathematical models to determine your chances of getting specific champions based on your level, gold, and the current pool state.</p>
-    
-    <p><strong>Features:</strong> Real-time probability calculations, 2-star and 3-star upgrade predictions, gold requirement estimates, and support for all TFT Set 14 units and shop odds.</p>
-    
-    <p><strong>How to use:</strong> Select your current level, choose the unit you want, enter how many copies are already out of the pool, and specify your gold budget. The calculator will show you the probability of hitting your desired unit and estimate the gold needed for 80% success rates.</p>
-  </div> -->
+  <h1 class="main-title"></h1>
+  <div class="description-section">
+  </div>
   <div class="main-flex">
     <aside class="sidebar">
       <form id="prob-form">
         <div class="input-section">
-          <label for="level-search">Current Level</label>
+          <label for="level-search"></label>
           <div class="level-search-wrapper">
-            <input type="text" id="level-search" placeholder="Your level" autocomplete="off">
+            <input type="text" id="level-search" placeholder="" autocomplete="off">
           </div>
           <div id="level-dropdown" class="level-dropdown"></div>
         </div>
         <hr>
         <div class="input-section">
-          <label for="unit-search">Select Unit</label>
+          <label for="unit-search"></label>
           <div class="unit-search-wrapper">
-            <input type="text" id="unit-search" placeholder="Type to search..." autocomplete="off">
+            <input type="text" id="unit-search" placeholder="" autocomplete="off">
           </div>
           <div id="unit-dropdown" class="unit-dropdown"></div>
         </div>
@@ -57,27 +53,33 @@
           <div id="selected-unit-display" class="selected-unit-display"></div>
           <div class="input-section">
             <label for="copies-out">Number of copies of <span id="unit-name-label"></span> out of pool</label>
-            <input type="number" id="copies-out" min="0" value="0">
+            <input type="number" id="copies-out" min="0" step="1" value="0">
           </div>
           <hr>
           <div class="input-section">
             <label for="pool-out">Number of copies of <span id="cost-label"></span>-costs out of pool</label>
-            <input type="number" id="pool-out" min="0" value="0">
+            <input type="number" id="pool-out" min="0" step="1" value="0">
           </div>
           <hr>
           <div class="input-section">
-            <label for="gold">Amount of gold</label>
+            <label for="gold"></label>
             <input type="number" id="gold" min="0" step="1" value="50">
           </div>
         </div>
       </form>
     </aside>
     <section class="chart-section">
-      <h2>Probability of Getting At Least X Copies</h2>
+      <h2></h2>
       <canvas id="prob-chart" width="600" height="300"></canvas>
       <div id="gold-2star-info" class="gold-2star-info"></div>
     </section>
   </div>
   <script src="tft-calc.js"></script>
+  <script>
+    // Initialize language selector after page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      i18n.createLanguageSelector();
+    });
+  </script>
 </body>
 </html> 

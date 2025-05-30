@@ -1,0 +1,18 @@
+{
+  "title": "TFT Rolling Probability Calculator",
+  "disclaimer": "These are estimates! Since the pool is always changing as people buy and sell, actual in-game odds can differ slightly, but these figures are designed to be reasonably close.",
+  "currentLevel": "Current Level",
+  "levelPlaceholder": "Your level",
+  "selectUnit": "Select Unit",
+  "unitPlaceholder": "Search...",
+  "copiesOut": "Number of copies of {unitName} out of the pool",
+  "poolOut": "Number of copies of {cost}-costs out of the pool",
+  "amountOfGold": "Amount of gold to roll",
+  "probabilityChart": "Probability of Getting At Least X Copies",
+  "noResults": "No results",
+  "goldFor2Star": "Gold required for 80% chance of 2-star (3+ copies): {gold}",
+  "goldFor3Star": "Gold required for 80% chance of 3-star (9+ copies): {gold}",
+  "language": "Language",
+  "metaDescription": "Calculate your odds of rolling any unit in TFT! Use this Teamfight Tactics rolling calculator to find the probability of hitting your desired champion, with up-to-date shop odds, pool sizes, and more.",
+  "metaKeywords": "TFT, Teamfight Tactics, rolling calculator, shop odds, probability, unit odds, TFT calculator, TFT probability, TFT shop odds, TFT roll odds, TFT tool, TFT guide, TFT probability calculator, TFT unit odds"
+} 

@@ -1,0 +1,18 @@
+{
+  "title": "TFT Roll-Wahrscheinlichkeitsrechner",
+  "disclaimer": "Dies sind Schätzungen! Da sich der Pool durch Käufe und Verkäufe ständig ändert, können die tatsächlichen Quoten im Spiel leicht abweichen, aber diese Zahlen sind so konzipiert, dass sie möglichst genau sind.",
+  "currentLevel": "Aktuelles Level",
+  "levelPlaceholder": "Dein Level",
+  "selectUnit": "Einheit auswählen",
+  "unitPlaceholder": "Suchen...",
+  "copiesOut": "Anzahl Kopien von {unitName} außerhalb des Pools",
+  "poolOut": "Anzahl {cost}-Gold-Einheiten außerhalb des Pools",
+  "amountOfGold": "Goldbetrag zum Rollen",
+  "probabilityChart": "Wahrscheinlichkeit, mindestens X Kopien zu erhalten",
+  "noResults": "Keine Ergebnisse",
+  "goldFor2Star": "Gold benötigt für 80% Chance auf 2-Sterne (3+ Kopien): {gold}",
+  "goldFor3Star": "Gold benötigt für 80% Chance auf 3-Sterne (9+ Kopien): {gold}",
+  "language": "Sprache",
+  "metaDescription": "Berechnen Sie Ihre Chancen, jede Einheit in TFT zu rollen! Verwenden Sie diesen Teamfight Tactics Wahrscheinlichkeitsrechner, um die Wahrscheinlichkeit zu finden, Ihren gewünschten Champion zu bekommen, mit aktuellen Shop-Quoten, Pool-Größen und mehr.",
+  "metaKeywords": "TFT, Teamfight Tactics, Roll-Rechner, Shop-Quoten, Wahrscheinlichkeit, Einheiten-Quoten, TFT-Rechner, TFT-Wahrscheinlichkeit, TFT-Shop-Quoten, TFT-Roll-Quoten, TFT-Tool, TFT-Guide, TFT-Wahrscheinlichkeitsrechner, TFT-Einheiten-Quoten"
+}

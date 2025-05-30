@@ -1,0 +1,18 @@
+{
+  "title": "TFT 리롤 확률 계산기",
+  "disclaimer": "이것은 예상치입니다! 플레이어들이 유닛을 사고팔기 때문에 챔피언 풀(pool)은 항상 변동하며, 실제 게임 내 확률은 약간 다를 수 있습니다. 하지만 이 수치들은 실제 값에 최대한 가깝도록 설계되었습니다.",
+  "currentLevel": "현재 레벨",
+  "levelPlaceholder": "나의 레벨",
+  "selectUnit": "유닛 선택",
+  "unitPlaceholder": "검색...",
+  "copiesOut": "풀에 없는 {unitName} 개수",
+  "poolOut": "풀에 없는 {cost} 코스트 유닛 개수",
+  "amountOfGold": "리롤에 사용할 골드",
+  "probabilityChart": "X개 이상 획득 확률",
+  "noResults": "결과 없음",
+  "goldFor2Star": "2성 80% 확률에 필요한 골드 (3+ 개): {gold}",
+  "goldFor3Star": "3성 80% 확률에 필요한 골드 (9+ 개): {gold}",
+  "language": "언어",
+  "metaDescription": "TFT에서 원하는 유닛을 롤할 확률을 계산하세요! 이 Teamfight Tactics 확률 계산기를 사용하여 원하는 챔피언을 얻을 확률을 최신 상점 확률, 풀 크기 등으로 찾아보세요.",
+  "metaKeywords": "TFT, Teamfight Tactics, 롤 계산기, 상점 확률, 확률, 유닛 확률, TFT 계산기, TFT 확률, TFT 상점 확률, TFT 롤 확률, TFT 도구, TFT 가이드, TFT 확률 계산기, TFT 유닛 확률"
+}

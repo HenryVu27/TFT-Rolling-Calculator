@@ -22,10 +22,6 @@ cd tft-rolling-calculator
 ### 2. Open the App
 Just open `index.html` in your browser. No build step required.
 
-## Credits
-- UI inspired by TFT stat sites.
-- Built with [Chart.js](https://www.chartjs.org/) for visualization.
-- Probability calculation logic derived from [wongkj12's explanation](https://github.com/wongkj12).
 
 ## Calculation Details
 
@@ -100,3 +96,8 @@ To determine the minimum gold required for a desired probability (e.g., 80% for 
 
 ![Equation 3: Cumulative probability](equations/eq3.png)
 
+## Credits
+- UI inspired by TFT stat sites.
+- Built with [Chart.js](https://www.chartjs.org/) for visualization.
+- Probability calculation logic derived from [wongkj12's explanation](https://github.com/wongkj12).
+- [Mizerawa][https://www.reddit.com/user/Mizerawa/] for the graph UI suggestions.

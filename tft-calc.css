@@ -189,7 +189,7 @@ input[type="number"]:focus, input[type="text"]:focus {
   color: #b3b9c9;
   font-size: 1.05em;
   line-height: 1.6;
-  text-align: center;
+  text-align: left;
 }
 .description-section p {
   margin-bottom: 16px;
@@ -319,5 +319,139 @@ canvas#prob-chart {
     max-width: 98vw;
     width: 100%;
     margin-top: 16px;
+  }
+}
+
+/* Language Selector Styles */
+.language-header {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.language-selector {
+  position: relative;
+  display: inline-block;
+}
+
+.current-language-btn {
+  background: #23273a;
+  border: 1.5px solid #2e3347;
+  border-radius: 8px;
+  color: #e6eaf3;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  min-width: 120px;
+  justify-content: space-between;
+}
+
+.current-language-btn:hover {
+  border-color: #7ec7e6;
+  background: #2e3347;
+}
+
+.current-language-btn.open {
+  border-color: #7ec7e6;
+  background: #2e3347;
+}
+
+.current-language-btn::after {
+  content: '';
+  width: 18px;
+  height: 18px;
+  background: url('data:image/svg+xml;utf8,<svg fill="%237ec7e6" height="18" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat center/18px 18px;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.current-language-btn.open::after {
+  background: url('data:image/svg+xml;utf8,<svg fill="%237ec7e6" height="18" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M7 14l5-5 5 5z"/></svg>') no-repeat center/18px 18px;
+}
+
+.language-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #23273a;
+  border: 1.5px solid #2e3347;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  min-width: 160px;
+  margin-top: 4px;
+  overflow: hidden;
+  z-index: 1001;
+}
+
+.language-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+  color: #e6eaf3;
+  font-size: 14px;
+  transition: background 0.15s ease;
+  border-bottom: 1px solid #2e3347;
+}
+
+.language-option:last-child {
+  border-bottom: none;
+}
+
+.language-option:hover {
+  background: #2e3347;
+}
+
+.language-option.selected {
+  background: #2e3347;
+  color: #7ec7e6;
+}
+
+/* Flag badge styling */
+.flag-badge {
+  display: inline-block;
+  background: #7ec7e6;
+  color: #181c24;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 4px;
+  border-radius: 3px;
+  min-width: 20px;
+  text-align: center;
+  line-height: 1;
+  letter-spacing: 0.5px;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .language-header {
+    top: 10px;
+    right: 10px;
+  }
+  
+  .current-language-btn {
+    padding: 6px 10px;
+    font-size: 12px;
+    min-width: 100px;
+  }
+  
+  .language-dropdown {
+    min-width: 140px;
+  }
+  
+  .language-option {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+  
+  .main-title {
+    margin-top: 80px;
   }
 } 

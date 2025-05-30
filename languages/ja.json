@@ -1,0 +1,18 @@
+{
+  "title": "TFT リロール確率計算機",
+  "disclaimer": "これらは推定値です。プレイヤーがユニットを売買することでプールは常に変動するため、実際のゲーム内での確率は若干異なる場合があります。しかし、これらの数値は実際の値にできる限り近くなるよう設計されています。",
+  "currentLevel": "現在のレベル",
+  "levelPlaceholder": "あなたのレベル",
+  "selectUnit": "ユニットを選択",
+  "unitPlaceholder": "検索...",
+  "copiesOut": "プール外の{unitName}の数",
+  "poolOut": "プール外の{cost}コストユニットの数",
+  "amountOfGold": "リロールに使用するゴールド量",
+  "probabilityChart": "X体以上を入手する確率",
+  "noResults": "結果なし",
+  "goldFor2Star": "2つ星80%確率に必要なゴールド（3+体）: {gold}",
+  "goldFor3Star": "3つ星80%確率に必要なゴールド（9+体）: {gold}",
+  "language": "言語",
+  "metaDescription": "TFTで任意のユニットをロールする確率を計算しよう！このTeamfight Tactics確率計算機を使用して、希望するチャンピオンを入手する確率を、最新のショップ確率、プールサイズなどで確認できます。",
+  "metaKeywords": "TFT, Teamfight Tactics, ロール計算機, ショップ確率, 確率, ユニット確率, TFT計算機, TFT確率, TFTショップ確率, TFTロール確率, TFTツール, TFTガイド, TFT確率計算機, TFTユニット確率"
+}

@@ -124,7 +124,7 @@ function renderLevelDropdown(filter = "") {
   if (filtered.length === 0) {
     const div = document.createElement('div');
     div.className = 'level-option';
-    div.textContent = 'No results';
+    div.textContent = (typeof i18n !== 'undefined' && i18n.translations) ? i18n.t('noResults') : 'No results';
     levelDropdown.appendChild(div);
   }
 }
@@ -191,7 +191,7 @@ function renderUnitDropdown(filter = "") {
   if (filtered.length === 0) {
     const div = document.createElement('div');
     div.className = 'unit-option';
-    div.innerHTML = 'No results';
+    div.innerHTML = (typeof i18n !== 'undefined' && i18n.translations) ? i18n.t('noResults') : 'No results';
     unitDropdown.appendChild(div);
   }
 }
@@ -239,12 +239,36 @@ function updateUnitInputsDisplay() {
   selectedUnitDisplay.innerHTML = `<img src="${getIconUrl(selectedUnit.name)}"><span>${selectedUnit.name}</span>`;
   unitNameLabel.textContent = selectedUnit.name;
   costLabel.textContent = selectedUnit.cost;
+  
+  // Update max values for inputs based on selected unit
+  const maxCopies = getPoolSize(selectedUnit.cost);
+  const maxPool = getMaxPoolSize(selectedUnit.cost);
+  
+  const copiesInput = document.getElementById('copies-out');
+  const poolInput = document.getElementById('pool-out');
+  
+  copiesInput.setAttribute('max', maxCopies);
+  poolInput.setAttribute('max', maxPool);
+  
+  // Validate current values against new maxes
+  if (parseInt(copiesInput.value) > maxCopies) {
+    copiesInput.value = maxCopies;
+  }
+  if (parseInt(poolInput.value) > maxPool) {
+    poolInput.value = maxPool;
+  }
+  
+  // Update dynamic labels with translation if available
+  if (typeof i18n !== 'undefined' && i18n.translations) {
+    i18n.updateDynamicLabels(selectedUnit);
+    updateChart();
+  }
 }
 
-// Set default selected unit and level to none
+// Set default selected unit and level
 updateUnitInputsDisplay();
 
-// --- Dropdown collapse on outside click ---
+// Dropdown collapse on outside click
 document.addEventListener('click', function(e) {
   if (!unitDropdown.contains(e.target) && e.target !== unitSearch) {
     closeUnitDropdown();
@@ -254,7 +278,27 @@ document.addEventListener('click', function(e) {
   }
 });
 
-// Chart.js setup 
+// Color gradient function for probability bars
+function getProbabilityColor(probability) {
+  const percent = probability * 100;
+  if (percent < 5) {
+    return '#8B0000';
+  } else if (percent < 15) {
+    return '#B22222';
+  } else if (percent < 30) {
+    return '#E07B39';
+  } else if (percent < 50) {
+    return '#F0C241';
+  } else if (percent < 70) {
+    return '#C6D93B';
+  } else if (percent < 85) {
+    return '#3CB371';
+  } else {
+    return '#218c74';
+  }
+}
+
+// Chart.js stuff 
 const ctx = document.getElementById('prob-chart').getContext('2d');
 const chart = new Chart(ctx, {
   type: 'bar',
@@ -263,12 +307,19 @@ const chart = new Chart(ctx, {
     datasets: [{
       label: "Probability of getting at least x units",
       data: [0,0,0,0,0,0,0,0,0],
-      backgroundColor: '#7ec7e6',
+      backgroundColor: [
+        '#7ec7e6', '#7ec7e6', '#7ec7e6', '#7ec7e6', '#7ec7e6',
+        '#7ec7e6', '#7ec7e6', '#7ec7e6', '#7ec7e6'
+      ],
       borderRadius: 6
     }]
   },
   options: {
     responsive: true,
+    interaction: {
+      mode: 'index',
+      intersect: false
+    },
     scales: {
       y: {
         beginAtZero: true,
@@ -314,6 +365,24 @@ function getPoolSize(cost) {
 
 function getDistinctChamps(cost) {
   return tftData.units.filter(u => u.cost === Number(cost)).length;
+}
+
+function getMaxPoolSize(cost) {
+  const poolSize = getPoolSize(cost);
+  const distinctChamps = getDistinctChamps(cost);
+  return poolSize * distinctChamps;
+}
+
+function validatePoolInput(input, cost) {
+  let intValue = parseInt(input.value) || 0;
+  if (intValue < 0) intValue = 0;
+  
+  // Get maximum possible pool size for this cost
+  const maxPool = getMaxPoolSize(cost);
+  if (intValue > maxPool) intValue = maxPool;
+  
+  input.value = intValue;
+  return intValue;
 }
 
 function getTransitionProb(cost, level, a, b) {
@@ -395,9 +464,9 @@ function findMinGoldForProbability(cost, level, a, b, targetCopies, threshold, m
     
     if (prob >= threshold) {
       result = gold;
-      high = mid - 2; // Search lower half
+      high = mid - 2;
     } else {
-      low = mid + 2; // Search upper half
+      low = mid + 2;
     }
   }
   
@@ -408,6 +477,10 @@ function findMinGoldForProbability(cost, level, a, b, targetCopies, threshold, m
 function updateChart() {
   if (!selectedUnit || !selectedLevel) {
     chart.data.datasets[0].data = [0,0,0,0,0,0,0,0,0];
+    chart.data.datasets[0].backgroundColor = [
+      '#7ec7e6', '#7ec7e6', '#7ec7e6', '#7ec7e6', '#7ec7e6',
+      '#7ec7e6', '#7ec7e6', '#7ec7e6', '#7ec7e6'
+    ];
     chart.update();
     document.getElementById('gold-2star-info').textContent = '';
     return;
@@ -418,7 +491,13 @@ function updateChart() {
   const b = Number(document.getElementById('pool-out').value);
   const gold = Number(document.getElementById('gold').value);
   const cprob = getProbs(cost, level, a, b, gold)[1].slice(1, 10);
+  
+  // Update chart data
   chart.data.datasets[0].data = cprob;
+  
+  // Update colors based on probability values
+  chart.data.datasets[0].backgroundColor = cprob.map(prob => getProbabilityColor(prob));
+  
   chart.update();
 
   // Use binary search for gold requirements
@@ -427,16 +506,33 @@ function updateChart() {
   
   const infoDiv = document.getElementById('gold-2star-info');
   let infoText = '';
-  if (minGold2 !== null) {
-    infoText += `<span>Gold required for 80% chance of 2-star (3+ copies): ${minGold2}</span>`;
+  
+  if (typeof i18n !== 'undefined' && i18n.translations) {
+    // Use translations
+    if (minGold2 !== null) {
+      infoText += `<span>${i18n.t('goldFor2Star', { gold: minGold2 })}</span>`;
+    } else {
+      infoText += `<span>${i18n.t('goldFor2Star', { gold: '≥200' })}</span>`;
+    }
+    if (minGold3 !== null) {
+      infoText += `<span>${i18n.t('goldFor3Star', { gold: minGold3 })}</span>`;
+    } else {
+      infoText += `<span>${i18n.t('goldFor3Star', { gold: '≥200' })}</span>`;
+    }
   } else {
-    infoText += `<span>Gold required for 80% chance of 2-star (3+ copies): \u2265200</span>`;
+    // Fallback for before i18n loads
+    if (minGold2 !== null) {
+      infoText += `<span>Gold required for 80% chance of 2-star (3+ copies): ${minGold2}</span>`;
+    } else {
+      infoText += `<span>Gold required for 80% chance of 2-star (3+ copies): ≥200</span>`;
+    }
+    if (minGold3 !== null) {
+      infoText += `<span>Gold required for 80% chance of 3-star (9+ copies): ${minGold3}</span>`;
+    } else {
+      infoText += `<span>Gold required for 80% chance of 3-star (9+ copies): ≥200</span>`;
+    }
   }
-  if (minGold3 !== null) {
-    infoText += `<span>Gold required for 80% chance of 3-star (9+ copies): ${minGold3}</span>`;
-  } else {
-    infoText += `<span>Gold required for 80% chance of 3-star (9+ copies): \u2265200</span>`;
-  }
+  
   infoDiv.innerHTML = infoText;
 }
 
@@ -456,7 +552,52 @@ const debouncedUpdateChart = debounce(updateChart, 250);
   el.addEventListener('focus', function() {
     this.select();
   });
-  el.addEventListener('input', debouncedUpdateChart);
+  
+  // Validate input to ensure only non-negative integers
+  el.addEventListener('input', function() {
+    let value = this.value;
+    
+    // Remove any non-digit characters
+    value = value.replace(/[^0-9]/g, '');
+    
+    // Convert to integer and ensure it's non-negative
+    let intValue = parseInt(value) || 0;
+    if (intValue < 0) intValue = 0;
+    
+    // Apply specific validation based on input type
+    if (id === 'copies-out' && selectedUnit) {
+      // Validate copies-out doesn't exceed the pool size for this specific unit
+      const maxCopies = getPoolSize(selectedUnit.cost);
+      if (intValue > maxCopies) intValue = maxCopies;
+    } else if (id === 'pool-out' && selectedUnit) {
+      // Validate pool-out doesn't exceed total pool for this cost tier
+      const maxPool = getMaxPoolSize(selectedUnit.cost);
+      if (intValue > maxPool) intValue = maxPool;
+    }
+    
+    // Update the input value
+    this.value = intValue;
+    
+    // Call the debounced update function
+    debouncedUpdateChart();
+  });
+  
+  // Also validate on blur to catch any edge cases
+  el.addEventListener('blur', function() {
+    let intValue = parseInt(this.value) || 0;
+    if (intValue < 0) intValue = 0;
+    
+    // Apply specific validation based on input type
+    if (id === 'copies-out' && selectedUnit) {
+      const maxCopies = getPoolSize(selectedUnit.cost);
+      if (intValue > maxCopies) intValue = maxCopies;
+    } else if (id === 'pool-out' && selectedUnit) {
+      const maxPool = getMaxPoolSize(selectedUnit.cost);
+      if (intValue > maxPool) intValue = maxPool;
+    }
+    
+    this.value = intValue;
+  });
 });
 
 // Initial chart
