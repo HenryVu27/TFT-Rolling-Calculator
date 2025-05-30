@@ -235,10 +235,10 @@ input[type="number"]:focus, input[type="text"]:focus {
   max-width: 700px;
 }
 .chart-section h2 {
-  color: #92cbe4;
+  color: #ced2dd;
   font-size: 1.15em;
-  margin-bottom: 10px;
-  font-weight: 500;
+  margin-bottom: 20px;
+  font-weight: 550;
   text-align: center;
 }
 
