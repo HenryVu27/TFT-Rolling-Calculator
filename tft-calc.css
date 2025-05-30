@@ -189,7 +189,7 @@ input[type="number"]:focus, input[type="text"]:focus {
   color: #b3b9c9;
   font-size: 1.05em;
   line-height: 1.6;
-  text-align: center;
+  text-align: left;
 }
 .description-section p {
   margin-bottom: 16px;

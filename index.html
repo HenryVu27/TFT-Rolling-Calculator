@@ -27,25 +27,24 @@
   <script src="i18n.js"></script>
 </head>
 <body>
-  <h1 class="main-title">TFT Rolling Probability Calculator</h1>
+  <h1 class="main-title"></h1>
   <div class="description-section">
-    <b>Disclaimer:</b> This calculator is not affiliated with Riot Games, and is for informational purposes only. The odds and probabilities are based on the current shop odds and pool sizes, and are subject to change.
   </div>
   <div class="main-flex">
     <aside class="sidebar">
       <form id="prob-form">
         <div class="input-section">
-          <label for="level-search">Current Level</label>
+          <label for="level-search"></label>
           <div class="level-search-wrapper">
-            <input type="text" id="level-search" placeholder="Your level" autocomplete="off">
+            <input type="text" id="level-search" placeholder="" autocomplete="off">
           </div>
           <div id="level-dropdown" class="level-dropdown"></div>
         </div>
         <hr>
         <div class="input-section">
-          <label for="unit-search">Select Unit</label>
+          <label for="unit-search"></label>
           <div class="unit-search-wrapper">
-            <input type="text" id="unit-search" placeholder="Type to search..." autocomplete="off">
+            <input type="text" id="unit-search" placeholder="" autocomplete="off">
           </div>
           <div id="unit-dropdown" class="unit-dropdown"></div>
         </div>
@@ -54,23 +53,23 @@
           <div id="selected-unit-display" class="selected-unit-display"></div>
           <div class="input-section">
             <label for="copies-out">Number of copies of <span id="unit-name-label"></span> out of pool</label>
-            <input type="number" id="copies-out" min="0" value="0">
+            <input type="number" id="copies-out" min="0" step="1" value="0">
           </div>
           <hr>
           <div class="input-section">
             <label for="pool-out">Number of copies of <span id="cost-label"></span>-costs out of pool</label>
-            <input type="number" id="pool-out" min="0" value="0">
+            <input type="number" id="pool-out" min="0" step="1" value="0">
           </div>
           <hr>
           <div class="input-section">
-            <label for="gold">Amount of gold</label>
+            <label for="gold"></label>
             <input type="number" id="gold" min="0" step="1" value="50">
           </div>
         </div>
       </form>
     </aside>
     <section class="chart-section">
-      <h2>Probability of Getting At Least X Copies</h2>
+      <h2></h2>
       <canvas id="prob-chart" width="600" height="300"></canvas>
       <div id="gold-2star-info" class="gold-2star-info"></div>
     </section>

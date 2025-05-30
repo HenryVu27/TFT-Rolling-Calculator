@@ -1,6 +1,6 @@
 {
   "title": "Công cụ tính Xác suất Roll TFT",
-  "disclaimer": "Lưu ý: Đây là các ước tính! Do bể tướng (pool) luôn thay đổi khi người chơi mua và bán, tỷ lệ thực tế trong trò chơi có thể hơi khác một chút, nhưng những số liệu này được thiết kế để gần với thực tế nhất có thể.",
+  "disclaimer": "Đây là các ước tính! Do bể tướng (pool) luôn thay đổi khi người chơi mua và bán, tỷ lệ thực tế trong trò chơi có thể hơi khác một chút, nhưng những số liệu này được thiết kế để gần với thực tế nhất có thể.",
   "currentLevel": "Cấp Hiện Tại",
   "levelPlaceholder": "Cấp của bạn",
   "selectUnit": "Chọn Tướng",

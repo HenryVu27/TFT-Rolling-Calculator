@@ -1,6 +1,6 @@
 {
   "title": "Calculateur de Probabilité de Roll TFT",
-  "disclaimer": "Rappel amical : Ce sont des estimations ! Comme le pool change constamment lorsque les joueurs achètent et vendent, les chances réelles en jeu peuvent légèrement différer, mais ces chiffres sont conçus pour être raisonnablement proches.",
+  "disclaimer": "Ce sont des estimations ! Comme le pool change constamment lorsque les joueurs achètent et vendent, les chances réelles en jeu peuvent légèrement différer, mais ces chiffres sont conçus pour être raisonnablement proches.",
   "currentLevel": "Niveau Actuel",
   "levelPlaceholder": "Votre niveau",
   "selectUnit": "Sélectionner une Unité",

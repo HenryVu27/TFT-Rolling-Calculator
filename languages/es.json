@@ -1,6 +1,6 @@
 {
   "title": "Calculadora de Probabilidad de Roleo de TFT",
-  "disclaimer": "Recordatorio amistoso: ¡Estas son estimaciones! Dado que el pozo (pool) cambia constantemente a medida que la gente compra y vende, las probabilidades reales en el juego pueden diferir ligeramente, pero estas cifras están diseñadas para ser razonablemente cercanas.",
+  "disclaimer": "¡Estas son estimaciones! Dado que el pozo (pool) cambia constantemente a medida que la gente compra y vende, las probabilidades reales en el juego pueden diferir ligeramente, pero estas cifras están diseñadas para ser razonablemente cercanas.",
   "currentLevel": "Nivel Actual",
   "levelPlaceholder": "Tu nivel",
   "selectUnit": "Seleccionar Unidad",

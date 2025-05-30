@@ -240,6 +240,24 @@ function updateUnitInputsDisplay() {
   unitNameLabel.textContent = selectedUnit.name;
   costLabel.textContent = selectedUnit.cost;
   
+  // Update max values for inputs based on selected unit
+  const maxCopies = getPoolSize(selectedUnit.cost);
+  const maxPool = getMaxPoolSize(selectedUnit.cost);
+  
+  const copiesInput = document.getElementById('copies-out');
+  const poolInput = document.getElementById('pool-out');
+  
+  copiesInput.setAttribute('max', maxCopies);
+  poolInput.setAttribute('max', maxPool);
+  
+  // Validate current values against new maxes
+  if (parseInt(copiesInput.value) > maxCopies) {
+    copiesInput.value = maxCopies;
+  }
+  if (parseInt(poolInput.value) > maxPool) {
+    poolInput.value = maxPool;
+  }
+  
   // Update dynamic labels with translation if available
   if (typeof i18n !== 'undefined' && i18n.translations) {
     i18n.updateDynamicLabels(selectedUnit);
@@ -275,6 +293,10 @@ const chart = new Chart(ctx, {
   },
   options: {
     responsive: true,
+    interaction: {
+      mode: 'index',
+      intersect: false
+    },
     scales: {
       y: {
         beginAtZero: true,
@@ -320,6 +342,24 @@ function getPoolSize(cost) {
 
 function getDistinctChamps(cost) {
   return tftData.units.filter(u => u.cost === Number(cost)).length;
+}
+
+function getMaxPoolSize(cost) {
+  const poolSize = getPoolSize(cost);
+  const distinctChamps = getDistinctChamps(cost);
+  return poolSize * distinctChamps;
+}
+
+function validatePoolInput(input, cost) {
+  let intValue = parseInt(input.value) || 0;
+  if (intValue < 0) intValue = 0;
+  
+  // Get maximum possible pool size for this cost
+  const maxPool = getMaxPoolSize(cost);
+  if (intValue > maxPool) intValue = maxPool;
+  
+  input.value = intValue;
+  return intValue;
 }
 
 function getTransitionProb(cost, level, a, b) {
@@ -479,7 +519,52 @@ const debouncedUpdateChart = debounce(updateChart, 250);
   el.addEventListener('focus', function() {
     this.select();
   });
-  el.addEventListener('input', debouncedUpdateChart);
+  
+  // Validate input to ensure only non-negative integers
+  el.addEventListener('input', function() {
+    let value = this.value;
+    
+    // Remove any non-digit characters
+    value = value.replace(/[^0-9]/g, '');
+    
+    // Convert to integer and ensure it's non-negative
+    let intValue = parseInt(value) || 0;
+    if (intValue < 0) intValue = 0;
+    
+    // Apply specific validation based on input type
+    if (id === 'copies-out' && selectedUnit) {
+      // Validate copies-out doesn't exceed the pool size for this specific unit
+      const maxCopies = getPoolSize(selectedUnit.cost);
+      if (intValue > maxCopies) intValue = maxCopies;
+    } else if (id === 'pool-out' && selectedUnit) {
+      // Validate pool-out doesn't exceed total pool for this cost tier
+      const maxPool = getMaxPoolSize(selectedUnit.cost);
+      if (intValue > maxPool) intValue = maxPool;
+    }
+    
+    // Update the input value
+    this.value = intValue;
+    
+    // Call the debounced update function
+    debouncedUpdateChart();
+  });
+  
+  // Also validate on blur to catch any edge cases
+  el.addEventListener('blur', function() {
+    let intValue = parseInt(this.value) || 0;
+    if (intValue < 0) intValue = 0;
+    
+    // Apply specific validation based on input type
+    if (id === 'copies-out' && selectedUnit) {
+      const maxCopies = getPoolSize(selectedUnit.cost);
+      if (intValue > maxCopies) intValue = maxCopies;
+    } else if (id === 'pool-out' && selectedUnit) {
+      const maxPool = getMaxPoolSize(selectedUnit.cost);
+      if (intValue > maxPool) intValue = maxPool;
+    }
+    
+    this.value = intValue;
+  });
 });
 
 // Initial chart

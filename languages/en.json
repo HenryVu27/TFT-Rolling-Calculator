@@ -1,6 +1,6 @@
 {
   "title": "TFT Rolling Probability Calculator",
-  "disclaimer": "Friendly reminder: These are estimates! Since the pool is always changing as people buy and sell, actual in-game odds can differ slightly, but these figures are designed to be reasonably close.",
+  "disclaimer": "These are estimates! Since the pool is always changing as people buy and sell, actual in-game odds can differ slightly, but these figures are designed to be reasonably close.",
   "currentLevel": "Current Level",
   "levelPlaceholder": "Your level",
   "selectUnit": "Select Unit",
