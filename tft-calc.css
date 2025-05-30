@@ -362,14 +362,16 @@ canvas#prob-chart {
 }
 
 .current-language-btn::after {
-  content: '▼';
-  font-size: 10px;
-  color: #7ec7e6;
+  content: '';
+  width: 18px;
+  height: 18px;
+  background: url('data:image/svg+xml;utf8,<svg fill="%237ec7e6" height="18" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat center/18px 18px;
   transition: transform 0.2s ease;
+  flex-shrink: 0;
 }
 
 .current-language-btn.open::after {
-  transform: rotate(180deg);
+  background: url('data:image/svg+xml;utf8,<svg fill="%237ec7e6" height="18" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M7 14l5-5 5 5z"/></svg>') no-repeat center/18px 18px;
 }
 
 .language-dropdown {

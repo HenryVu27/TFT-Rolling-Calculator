@@ -278,6 +278,26 @@ document.addEventListener('click', function(e) {
   }
 });
 
+// Color gradient function for probability bars
+function getProbabilityColor(probability) {
+  const percent = probability * 100;
+  if (percent < 5) {
+    return '#8B0000';
+  } else if (percent < 15) {
+    return '#B22222';
+  } else if (percent < 30) {
+    return '#E07B39';
+  } else if (percent < 50) {
+    return '#F0C241';
+  } else if (percent < 70) {
+    return '#C6D93B';
+  } else if (percent < 85) {
+    return '#3CB371';
+  } else {
+    return '#218c74';
+  }
+}
+
 // Chart.js stuff 
 const ctx = document.getElementById('prob-chart').getContext('2d');
 const chart = new Chart(ctx, {
@@ -287,7 +307,10 @@ const chart = new Chart(ctx, {
     datasets: [{
       label: "Probability of getting at least x units",
       data: [0,0,0,0,0,0,0,0,0],
-      backgroundColor: '#7ec7e6',
+      backgroundColor: [
+        '#7ec7e6', '#7ec7e6', '#7ec7e6', '#7ec7e6', '#7ec7e6',
+        '#7ec7e6', '#7ec7e6', '#7ec7e6', '#7ec7e6'
+      ],
       borderRadius: 6
     }]
   },
@@ -454,6 +477,10 @@ function findMinGoldForProbability(cost, level, a, b, targetCopies, threshold, m
 function updateChart() {
   if (!selectedUnit || !selectedLevel) {
     chart.data.datasets[0].data = [0,0,0,0,0,0,0,0,0];
+    chart.data.datasets[0].backgroundColor = [
+      '#7ec7e6', '#7ec7e6', '#7ec7e6', '#7ec7e6', '#7ec7e6',
+      '#7ec7e6', '#7ec7e6', '#7ec7e6', '#7ec7e6'
+    ];
     chart.update();
     document.getElementById('gold-2star-info').textContent = '';
     return;
@@ -464,7 +491,13 @@ function updateChart() {
   const b = Number(document.getElementById('pool-out').value);
   const gold = Number(document.getElementById('gold').value);
   const cprob = getProbs(cost, level, a, b, gold)[1].slice(1, 10);
+  
+  // Update chart data
   chart.data.datasets[0].data = cprob;
+  
+  // Update colors based on probability values
+  chart.data.datasets[0].backgroundColor = cprob.map(prob => getProbabilityColor(prob));
+  
   chart.update();
 
   // Use binary search for gold requirements
