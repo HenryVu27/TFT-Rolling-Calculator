@@ -1,18 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- English (default) -->
   <url>
     <loc>https://henryvu27.github.io/TFT-Rolling-Calculator/</loc>
     <lastmod>2025-06-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <!-- Multi-language versions -->
-    <xhtml:link rel="alternate" hreflang="en" href="https://henryvu27.github.io/TFT-Rolling-Calculator/?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://henryvu27.github.io/TFT-Rolling-Calculator/?lang=ko"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://henryvu27.github.io/TFT-Rolling-Calculator/?lang=ja"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://henryvu27.github.io/TFT-Rolling-Calculator/?lang=es"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://henryvu27.github.io/TFT-Rolling-Calculator/?lang=fr"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://henryvu27.github.io/TFT-Rolling-Calculator/?lang=de"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://henryvu27.github.io/TFT-Rolling-Calculator/?lang=vi"/>
+  </url>
+  
+  <!-- English -->
+  <url>
+    <loc>https://henryvu27.github.io/TFT-Rolling-Calculator/?lang=en</loc>
+    <lastmod>2025-06-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Korean -->
+  <url>
+    <loc>https://henryvu27.github.io/TFT-Rolling-Calculator/?lang=ko</loc>
+    <lastmod>2025-06-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Japanese -->
+  <url>
+    <loc>https://henryvu27.github.io/TFT-Rolling-Calculator/?lang=ja</loc>
+    <lastmod>2025-06-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Spanish -->
+  <url>
+    <loc>https://henryvu27.github.io/TFT-Rolling-Calculator/?lang=es</loc>
+    <lastmod>2025-06-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- French -->
+  <url>
+    <loc>https://henryvu27.github.io/TFT-Rolling-Calculator/?lang=fr</loc>
+    <lastmod>2025-06-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- German -->
+  <url>
+    <loc>https://henryvu27.github.io/TFT-Rolling-Calculator/?lang=de</loc>
+    <lastmod>2025-06-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Vietnamese -->
+  <url>
+    <loc>https://henryvu27.github.io/TFT-Rolling-Calculator/?lang=vi</loc>
+    <lastmod>2025-06-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
   </url>
 </urlset> 
