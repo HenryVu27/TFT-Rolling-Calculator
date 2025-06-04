@@ -18,7 +18,7 @@ Use the calculator [here](https://henryvu27.github.io/TFT-Rolling-Odds-Calculato
 ```bash
 # HTTPS
 git clone https://github.com/yourusername/tft-rolling-odds-calculator.git
-cd tft-rolling-calculator
+cd tft-rolling-odds-calculator
 ```
 
 ### 2. Open the App
