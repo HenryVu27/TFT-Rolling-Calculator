@@ -4,7 +4,7 @@ A web tool to calculate your odds of rolling any unit in Teamfight Tactics (TFT)
 
 **Updated for Set 14**.
 
-Use the calculator [here](https://henryvu27.github.io/TFT-Rolling-Odds-Calculator/)
+Use the calculator [here](https://henryvu27.github.io/TFT-Rolling-Calculator/)
 
 ## Features
 - Find the chance of hitting your desired unit after any number of rolls given your current level and gold, using up-to-date shop odds and pool sizes.
@@ -17,8 +17,8 @@ Use the calculator [here](https://henryvu27.github.io/TFT-Rolling-Odds-Calculato
 ### 1. Clone the Repository
 ```bash
 # HTTPS
-git clone https://github.com/yourusername/tft-rolling-odds-calculator.git
-cd tft-rolling-odds-calculator
+git clone https://github.com/yourusername/tft-rolling-calculator.git
+cd tft-rolling-calculator
 ```
 
 ### 2. Open the App
