@@ -10,7 +10,7 @@ class I18n {
       'ko': { name: '한국어', flag: 'KR', file: 'languages/ko.json' }
     };
     
-    // Check for URL parameter first, then localStorage, then default to English
+    // check URL first, then local, then default to English
     const urlParams = new URLSearchParams(window.location.search);
     const urlLang = urlParams.get('lang');
     let initialLang = 'en';
@@ -38,7 +38,7 @@ class I18n {
       this.updateUI();
     } catch (error) {
       console.error('Error loading language:', error);
-      // Fallback mech to en
+      // fallback mech to en
       if (langCode !== 'en') {
         this.loadLanguage('en');
       }
@@ -48,7 +48,7 @@ class I18n {
   t(key, variables = {}) {
     let translation = this.translations[key] || key;
     
-    // Replace variables in the translation
+    // replace variables in the translation
     Object.keys(variables).forEach(variable => {
       translation = translation.replace(`{${variable}}`, variables[variable]);
     });
@@ -57,10 +57,7 @@ class I18n {
   }
 
   updateUI() {
-    // page title
     document.title = this.t('title') + ' | Teamfight Tactics Shop Odds & Probability Tool';
-    
-    // Update SEO meta tags
     this.updateSEOMetadata();
     
     // main title
@@ -123,22 +120,22 @@ class I18n {
   }
 
   updateSEOMetadata() {
-    // Update html lang attribute
+    // update html lang attribute
     document.documentElement.lang = this.currentLanguage;
     
-    // Update meta description
+    // update description
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
       metaDesc.content = this.t('metaDescription');
     }
     
-    // Update meta keywords
+    // updatekeywords
     const metaKeywords = document.querySelector('meta[name="keywords"]');
     if (metaKeywords) {
       metaKeywords.content = this.t('metaKeywords');
     }
     
-    // Update Open Graph tags
+    // update open graph tag
     const ogTitle = document.querySelector('meta[property="og:title"]');
     if (ogTitle) {
       ogTitle.content = this.t('title') + ' | Teamfight Tactics Shop Odds & Probability Tool';
@@ -149,19 +146,19 @@ class I18n {
       ogDesc.content = this.t('metaDescription');
     }
     
-    // Add/update hreflang tags for international SEO
+    // update hreflang tags for int SEO
     this.updateHreflangTags();
     
-    // Add/update JSON-LD structured data
+    // update structured data
     this.updateStructuredData();
   }
 
   updateHreflangTags() {
-    // Remove existing hreflang tags
+    // remove current hreflang 
     const existingHreflang = document.querySelectorAll('link[rel="alternate"][hreflang]');
     existingHreflang.forEach(tag => tag.remove());
     
-    // Add hreflang tags for each language
+    // hreflang for languages
     Object.keys(this.languages).forEach(langCode => {
       const link = document.createElement('link');
       link.rel = 'alternate';
@@ -170,7 +167,7 @@ class I18n {
       document.head.appendChild(link);
     });
     
-    // Add x-default for English
+    // default to English
     const defaultLink = document.createElement('link');
     defaultLink.rel = 'alternate';
     defaultLink.hreflang = 'x-default';
@@ -179,13 +176,13 @@ class I18n {
   }
 
   updateStructuredData() {
-    // Remove existing structured data
+    // remove current structured data
     const existingLD = document.querySelector('script[type="application/ld+json"]');
     if (existingLD) {
       existingLD.remove();
     }
     
-    // Create new structured data
+    // new structured data
     const structuredData = {
       "@context": "https://schema.org",
       "@type": "WebApplication",
@@ -235,7 +232,7 @@ class I18n {
       currentLangButton.innerHTML = `<span class="flag-badge">${lang.flag}</span> ${lang.name}`;
     }
     
-    // dropdown options highlighting
+    // dropdown options highlight
     const dropdown = document.getElementById('language-dropdown');
     if (dropdown) {
       const options = dropdown.querySelectorAll('.language-option');
@@ -291,7 +288,7 @@ class I18n {
     
     document.body.insertBefore(header, document.body.firstChild);
     
-    // Close dropdown
+    // close language selector
     document.addEventListener('click', (e) => {
       if (!languageSelector.contains(e.target)) {
         this.hideLanguageDropdown();
