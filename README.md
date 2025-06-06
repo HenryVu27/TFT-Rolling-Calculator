@@ -22,9 +22,12 @@ cd tft-rolling-calculator
 ```
 
 ### 2. Open the App
-Just open `index.html` in your browser. No build step required.
-
-
+- Start a local web server
+```bash
+python -m http.server 8000
+```
+- Open [local](http://localhost:8000/) 
+  
 ## Calculation Details
 
 ### Probability Calculation
