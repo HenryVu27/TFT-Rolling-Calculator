@@ -26,16 +26,16 @@ cd tft-rolling-calculator
 ```bash
 python -m http.server 8000
 ```
-- Open [local](http://localhost:8000/) 
+- Open `http://localhost:8000/` to access the web server.
   
 ## Calculation Details
 
 ### Probability Calculation
 This tool uses a Markov chain model to calculate the probability of obtaining a certain number of copies of a specific unit in TFT, given your current level, gold, and the state of the unit pool. The calculation takes into account:
-- Your current level (which determines shop odds for each cost)
-- The cost of the unit you are rolling for
-- The number of copies of that unit and all units of that cost already out of the pool
-- The amount of gold you plan to spend
+- Your current level (which determines shop odds for each cost),
+- The cost of the unit you are rolling for,
+- The number of copies of that unit and all units of that cost already out of the pool,
+- The amount of gold you plan to spend.
 
 #### Steps:
 1. **Shop Odds**: For your level, the chance of seeing a unit of a given cost in each shop slot is determined by Riot's official shop odds table.
@@ -60,23 +60,23 @@ To determine the minimum gold required for a desired probability (e.g., 80% for 
 #### Time Complexity
 
 **Independent Shop Approach:**
-- State space: Number of copies you have (0 to 9) → ~10 states (another assumption for efficiency)
-- Transition matrix: 10×10
-- Time complexity per gold value: O(1) since matrix operations on 10×10 are negligible
-- Total complexity for finding minimum gold (up to 200): O(200) ≈ O(1)
+- State space: Number of copies you have (0 to 9) → ~10 states (another assumption for efficiency).
+- Transition matrix: 10×10.
+- Time complexity per gold value: O(1) since matrix operations on 10×10 are negligible.
+- Total complexity for finding minimum gold (up to 200): O(200) ≈ O(1).
 
 **Dependent Shop Approach:**
-- State space: Must track entire pool state for all units of that cost
-- For cost 1 units: 13 distinct champions × 30 pool size = 390 total units
-- State space: All possible distributions of remaining units → O(10³ to 10⁴) states  
-- Transition matrix: (state_space)² elements
-- Time complexity per gold value: O(state_space³) for matrix operations
-- Total complexity: O(200 × state_space³)
+- State space: Must track entire pool state for all units of that cost.
+- For cost 1 units: 13 distinct champions × 30 pool size = 390 total units.
+- State space: All possible distributions of remaining units → O(10³ to 10⁴) states.
+- Transition matrix: (state_space)² elements.
+- Time complexity per gold value: O(state_space³) for matrix operations.
+- Total complexity: O(200 × state_space³).
 
 **Performance Comparison:**
-- Independent approach: ~1,000 operations per calculation
-- Dependent approach: ~10⁹ to 10¹² operations per calculation
-- **Speedup: 10⁶ to 10⁹ times faster** with minimal accuracy loss
+- Independent approach: ~1,000 operations per calculation.
+- Dependent approach: ~10⁹ to 10¹² operations per calculation.
+- **Speedup: 10⁶ to 10⁹ times faster** with minimal accuracy loss.
 
 #### How the Computation Works:
 
@@ -84,11 +84,11 @@ To determine the minimum gold required for a desired probability (e.g., 80% for 
 
 ![Equation 1: Probability p](equations/eq1.png)
 - Where:
-  - C = your unit's cost
-  - L = your current level
-  - ShopOdds(L, C) = shop odds for cost C at level L
-  - U = number of copies of your unit left in the pool
-  - N = total number of all units of cost C left in the pool
+  - C = your unit's cost,
+  - L = your current level,
+  - ShopOdds(L, C) = shop odds for cost C at level L,
+  - U = number of copies of your unit left in the pool,
+  - N = total number of all units of cost C left in the pool.
 
 **Transition for one roll (5 slots):**
 
